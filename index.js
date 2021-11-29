@@ -20,8 +20,7 @@ app.get("/characters", async (req, res) => {
   if (req.query.name) {
     try {
       const response = await axios.get(
-        `${apiUrl}/characters?apiKey=${apiKey}&offset=${req.query.offset}&name=${req.query.name}`,
-        { params: { _limit: 0 } }
+        `${apiUrl}/characters?apiKey=${apiKey}&offset=${req.query.offset}&name=${req.query.name}`
       );
       res.json(response.data);
     } catch (error) {
