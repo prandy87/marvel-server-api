@@ -17,10 +17,12 @@ app.get("/", (req, res) => {
 });
 
 app.get("/characters", async (req, res) => {
+  let offset = Number(req.query.offset);
+
   if (req.query.name) {
     try {
       const response = await axios.get(
-        `${apiUrl}/characters?apiKey=${apiKey}&name=${req.query.name}`
+        `${apiUrl}/characters?apiKey=${apiKey}&limit=100&offset=${offset}&name=${req.query.name}`
       );
       res.json(response.data);
     } catch (error) {
@@ -28,7 +30,9 @@ app.get("/characters", async (req, res) => {
     }
   } else {
     try {
-      const response = await axios.get(`${apiUrl}/characters?apiKey=${apiKey}`);
+      const response = await axios.get(
+        `${apiUrl}/characters?apiKey=${apiKey}&limit=100&offset=${offset}`
+      );
 
       res.json(response.data);
     } catch (error) {
@@ -38,11 +42,12 @@ app.get("/characters", async (req, res) => {
 });
 
 app.get("/comics", async (req, res) => {
+  let offset = req.query.offset;
   if (req.query.title) {
     //let title = new RegExp(req.fields.title, "g");
     try {
       const response = await axios.get(
-        `${apiUrl}/comics?apiKey=${apiKey}&title=${req.query.title}`
+        `${apiUrl}/comics?apiKey=${apiKey}&offset=${offset}&title=${req.query.title}`
       );
       res.json(response.data);
     } catch (error) {
@@ -50,7 +55,9 @@ app.get("/comics", async (req, res) => {
     }
   } else {
     try {
-      const response = await axios.get(`${apiUrl}/comics?apiKey=${apiKey}`);
+      const response = await axios.get(
+        `${apiUrl}/comics?apiKey=${apiKey}&offset=${offset}`
+      );
       res.json(response.data);
     } catch (error) {
       res.status(400).json({ message: error.message });
