@@ -17,12 +17,12 @@ app.get("/", (req, res) => {
 });
 
 app.get("/characters", async (req, res) => {
-  let offset = Number(req.query.offset);
+  // let offset = Number(req.query.offset);
 
   if (req.query.name) {
     try {
       const response = await axios.get(
-        `${apiUrl}/characters?apiKey=${apiKey}&limit=100&offset=${offset}&name=${req.query.name}`
+        `${apiUrl}/characters?apiKey=${apiKey}&limit=100&offset=${req.query.offset}&name=${req.query.name}`
       );
       res.json(response.data);
     } catch (error) {
