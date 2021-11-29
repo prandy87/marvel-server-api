@@ -20,9 +20,7 @@ app.get("/characters", async (req, res) => {
   if (req.query.name) {
     try {
       const response = await axios.get(
-        `${apiUrl}/characters?apiKey=${apiKey}&offset=${parseInt(
-          req.query.offset
-        )}&name=${req.query.name}`
+        `${apiUrl}/characters?apiKey=${apiKey}&offset=${req.query.offset}&name=${req.query.name}`
       );
       res.json(response.data);
     } catch (error) {
@@ -31,9 +29,7 @@ app.get("/characters", async (req, res) => {
   } else {
     try {
       const response = await axios.get(
-        `${apiUrl}/characters?apiKey=${apiKey}&offset=${parseInt(
-          req.query.offset
-        )}`
+        `${apiUrl}/characters?apiKey=${apiKey}&offset=${req.query.offset}`
       );
 
       res.json(response.data);
