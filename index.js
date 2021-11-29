@@ -24,7 +24,7 @@ app.get("/characters", async (req, res) => {
           req.query.offset
         )}&name=${req.query.name}`
       );
-      res.json(response.data);
+      res.json(response.data.results);
     } catch (error) {
       console.log(error.message);
     }
