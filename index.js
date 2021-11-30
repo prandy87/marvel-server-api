@@ -17,10 +17,14 @@ app.get("/", (req, res) => {
 });
 
 app.get("/characters", async (req, res) => {
+  const limit = 100;
+  const page = req.query.page;
+  const skip = (page - 1) * limit;
+
   if (req.query.name) {
     try {
       const response = await axios.get(
-        `${apiUrl}/characters?apiKey=${apiKey}&offset=${req.query.offset}&name=${req.query.name}`
+        `${apiUrl}/characters?apiKey=${apiKey}&page=${page}&limit=${limit}&skip=${skip}&name=${req.query.name}`
       );
       res.json(response.data);
     } catch (error) {
@@ -29,7 +33,7 @@ app.get("/characters", async (req, res) => {
   } else {
     try {
       const response = await axios.get(
-        `${apiUrl}/characters?apiKey=${apiKey}&offset=${req.query.offset}`
+        `${apiUrl}/characters?apiKey=${apiKey}&page=${page}&limit=${limit}&skip=${skip}`
       );
 
       res.json(response.data);
