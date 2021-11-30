@@ -44,12 +44,14 @@ app.get("/characters", async (req, res) => {
 });
 
 app.get("/comics", async (req, res) => {
-  let offset = req.query.offset;
+  const limit = 100;
+  const page = req.query.page;
+  const skip = (page - 1) * limit;
   if (req.query.title) {
     //let title = new RegExp(req.fields.title, "g");
     try {
       const response = await axios.get(
-        `${apiUrl}/comics?apiKey=${apiKey}&offset=${offset}&title=${req.query.title}`
+        `${apiUrl}/comics?apiKey=${apiKey}&page=${page}&limit=${limit}&skip=${skip}&title=${req.query.title}`
       );
       res.json(response.data);
     } catch (error) {
@@ -58,7 +60,7 @@ app.get("/comics", async (req, res) => {
   } else {
     try {
       const response = await axios.get(
-        `${apiUrl}/comics?apiKey=${apiKey}&offset=${offset}`
+        `${apiUrl}/comics?apiKey=${apiKey}&page=${page}&limit=${limit}&skip=${skip}`
       );
       res.json(response.data);
     } catch (error) {
