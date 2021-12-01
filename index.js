@@ -56,7 +56,7 @@ app.post("/favourites", async (req, res) => {
       fav.push(response.data);
     }
     // on renvoie fav au client
-    res.json(fav);
+    console.log(fav);
   } catch (error) {
     res.status(400).json({ message: "totototo" });
   }
