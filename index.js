@@ -53,7 +53,7 @@ app.post("/favourites", async (req, res) => {
         `${apiUrl}/characters?apiKey=${apiKey}&id=${favTab[0][i]}`
       );
       // tu push la réponse dans fav
-      fav.push(response);
+      fav.push(response.data);
     }
     // on renvoie fav au client
     res.json(fav);
