@@ -43,6 +43,14 @@ app.get("/characters", async (req, res) => {
   }
 });
 
+app.post("/favourites", async (req, res) => {
+  try {
+    console.log(req.fields);
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+});
+
 app.get("/comics", async (req, res) => {
   const limit = 100;
   const page = req.query.page;
