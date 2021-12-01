@@ -45,7 +45,9 @@ app.get("/characters", async (req, res) => {
 
 app.post("/favourites", async (req, res) => {
   try {
-    console.log(req.fields);
+    console.log(req.fields.favTab);
+    // let fav = [];
+    // for (let i = 0; i < req.fields.length; i++)
   } catch (error) {
     res.status(400).json(error.message);
   }
