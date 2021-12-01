@@ -49,14 +49,14 @@ app.post("/favourites", async (req, res) => {
     let fav = [];
     for (let i = 0; i < req.fields.favTab[0].length; i++) {
       // faire un requete pour récupérer les info d'un char
-      const response = await axios.get(
-        `${apiUrl}/characters?apiKey=${apiKey}&id=${favTab[0][i]}`
-      );
+      // const response = await axios.get(
+      //   `${apiUrl}/characters?apiKey=${apiKey}&id=${favTab[0][i]}`
+      // );
       // tu push la réponse dans fav
-      fav.push(response.data);
+      // fav.push(response.data);
     }
     // on renvoie fav au client
-    res.json(fav);
+    // res.json(fav);
   } catch (error) {
     res.status(400).json(error.message);
   }
