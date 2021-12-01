@@ -45,12 +45,12 @@ app.get("/characters", async (req, res) => {
 
 app.post("/favourites", async (req, res) => {
   try {
-    // console.log(req.fields.favTab);
+    console.log(req.fields.favTab[0]);
     let fav = [];
     for (let i = 0; i < req.fields.favTab[0].length; i++) {
       // faire un requete pour récupérer les info d'un char
       const response = await axios.get(
-        `${apiUrl}/characters?apiKey=${apiKey}?name=${favTab[0][i]}`
+        `${apiUrl}/characters?apiKey=${apiKey}?name=${favTab[0]}`
       );
       // tu push la réponse dans fav
       fav.push(response.data);
