@@ -45,7 +45,7 @@ app.get("/characters", async (req, res) => {
 
 app.post("/favourites", async (req, res) => {
   try {
-    console.log(req.fields.favTab);
+    // console.log(req.fields.favTab);
     let fav = [];
     for (let i = 0; i < req.fields.favTab[0].length; i++) {
       // faire un requete pour récupérer les info d'un char
