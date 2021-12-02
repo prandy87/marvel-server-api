@@ -63,6 +63,22 @@ app.post("/favourites", async (req, res) => {
   }
 });
 
+app.post("favouritescom", async (req, res) => {
+  try {
+    console.log(req.fields.favTab[1]);
+    let favCom = [];
+    for (let i = 0; i < req.fields.favTab[1].length; i++) {
+      const response = await axios.get(
+        `${apiUrl}/comic/${req.fields.favTab[1][i]}?apiKey=${apiKey}`
+      );
+      favCom.push(response.data);
+      res.status(200).json(favCom);
+    }
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
 app.get("/comics", async (req, res) => {
   const limit = 100;
   const page = req.query.page;
