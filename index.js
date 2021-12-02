@@ -63,7 +63,7 @@ app.post("/favourites", async (req, res) => {
   }
 });
 
-app.post("favouritescom", async (req, res) => {
+app.post("/favouritescom", async (req, res) => {
   try {
     console.log(req.fields.favTab[1]);
     let favCom = [];
