@@ -72,8 +72,8 @@ app.post("/favouritescom", async (req, res) => {
         `${apiUrl}/comic/${req.fields.favTab[1][i]}?apiKey=${apiKey}`
       );
       favCom.push(response.data);
-      res.status(200).json(favCom);
     }
+    res.status(200).json(favCom);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
