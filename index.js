@@ -16,6 +16,16 @@ app.get("/", (req, res) => {
   res.status(200).json("Welcome to Marvel.");
 });
 
+app.post("/sign_up", (req, res) => {
+  try {
+    console.log(req.fields);
+    res.status(200).json("Retrieved Data");
+  } catch (error) {
+    console.log("SOME ERROR");
+    res.status(400).json({ message: error.message });
+  }
+});
+
 app.get("/characters", async (req, res) => {
   const limit = 100;
   const page = req.query.page;
