@@ -57,7 +57,7 @@ app.post("/sign_up", async (req, res) => {
           }
         }
       } catch (error) {
-        res.status(400).json({ message: error.message });
+        res.status(400).json("email already registered.");
       }
     } else {
       res.status(400).json("Please provide a username and email");
