@@ -4,6 +4,7 @@ const express = require("express");
 const formidable = require("express-formidable");
 const cors = require("cors");
 const axios = require("axios");
+const mongoose = require("mongoose");
 const User = require("./Models/User");
 
 mongoose.connect(process.env.MONGODB_URI);
