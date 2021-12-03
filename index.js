@@ -70,6 +70,37 @@ app.post("/sign_up", async (req, res) => {
   }
 });
 
+app.post("/login", async (req, res) => {
+  try {
+    console.log(req.fields);
+    if (req.fields.email && req.fields.password) {
+      const findUser = await User.findOne({ email: req.fields.email });
+      if (!findUser) {
+        res.status(400).json("invalid email");
+      } else {
+        try {
+          if (
+            findUser.hash !==
+            SHA256(req.fields.password + findUser.salt).toString(encBase64)
+          ) {
+            res.status(401).json("invalid password"); //401 = non-authorized
+          } else {
+            res.status(200).json({
+              _id: findUser._id,
+              token: findUser.token,
+              account: findUser.account,
+            });
+          }
+        } catch (error) {
+          res.status(400).json({ message: error.message });
+        }
+      }
+    }
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
 app.get("/characters", async (req, res) => {
   const limit = 100;
   const page = req.query.page;
