@@ -57,7 +57,7 @@ app.post("/sign_up", async (req, res) => {
           }
         }
       } catch (error) {
-        res.status(400).json({ message: "Email already in database" });
+        res.status(400).json({ message: error.message });
       }
     } else {
       res.status(400).json("Please provide a username and email");
