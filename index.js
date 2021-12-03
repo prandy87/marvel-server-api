@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
 app.post("/sign_up", async (req, res) => {
   try {
     console.log(req.fields);
-    res.status(200).json("Retrieved Data");
+
     if (req.fields.username && req.fields.email && req.fields.password) {
       try {
         const registeredEmail = await User.findOne({ email: req.fields.email });
