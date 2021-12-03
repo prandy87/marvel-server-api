@@ -5,7 +5,7 @@ const formidable = require("express-formidable");
 const cors = require("cors");
 const axios = require("axios");
 const mongoose = require("mongoose");
-const User = require("./Models/User");
+const User = require("./Models/User.js");
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -28,7 +28,7 @@ app.post("/sign_up", async (req, res) => {
   try {
     console.log(req.fields);
     res.status(200).json("Retrieved Data");
-    if (req.fields.username && req.fields.email) {
+    if (req.fields.username && req.fields.email && req.fields.password) {
       try {
         const registeredEmail = await User.findOne({ email: req.fields.email });
         if (!registeredEmail) {
